@@ -13,8 +13,6 @@ import numpy as np
 import pandas as pd
 import re
 
-
-# # # # TWITTER CLIENT # # # #
 class TwitterClient():
     def __init__(self, twitter_user=None):
         self.auth = TwitterAuthenticator().authenticate_twitter_app()
@@ -43,7 +41,6 @@ class TwitterClient():
         return home_timeline_tweets
 
 
-# # # # TWITTER AUTHENTICATER # # # #
 class TwitterAuthenticator():
 
     def authenticate_twitter_app(self):
@@ -51,11 +48,10 @@ class TwitterAuthenticator():
         auth.set_access_token(twitter_credentials.ACCESS_TOKEN, twitter_credentials.ACCESS_TOKEN_SECRET)
         return auth
 
-# # # # TWITTER STREAMER # # # #
+
 class TwitterStreamer():
-    """
-    Class for streaming and processing live tweets.
-    """
+
+ 
     def __init__(self):
         self.twitter_autenticator = TwitterAuthenticator()    
 
@@ -69,11 +65,9 @@ class TwitterStreamer():
         stream.filter(track=hash_tag_list)
 
 
-# # # # TWITTER STREAM LISTENER # # # #
+
 class TwitterListener(StreamListener):
-    """
-    This is a basic listener that just prints received tweets to stdout.
-    """
+    
     def __init__(self, fetched_tweets_filename):
         self.fetched_tweets_filename = fetched_tweets_filename
 
@@ -95,10 +89,7 @@ class TwitterListener(StreamListener):
 
 
 class TweetAnalyzer():
-    """
-    Functionality for analyzing and categorizing content from tweets.
-    """
-
+   
     def clean_tweet(self, tweet):
         return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", tweet).split())
 
